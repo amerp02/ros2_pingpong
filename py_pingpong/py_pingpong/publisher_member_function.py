@@ -23,16 +23,15 @@ class MinimalPublisher(Node):
     def __init__(self):
         super().__init__('minimal_publisher')
         self.publisher_ = self.create_publisher(String, 'topic', 10)
-        self.timer_period = 1  # seconds
-        self.timer = self.create_timer(self.timer_period, self.timer_callback)
+        timer_period = 1  # seconds
+        self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
 
     def timer_callback(self):
         msg = String()
-        msg.data = 'Ping (call #%d) (time: %d seconds)' % (self.i, self.timer_period)
+        msg.data = 'Ping (call #%d)' % self.i
         self.publisher_.publish(msg)
         self.get_logger().info('Publishing: "%s"' % msg.data)
-        self.timer_period += 1 
         self.i += 1
 
 def main(args=None):
