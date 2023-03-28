@@ -6,16 +6,17 @@ from std_msgs.msg import String
 class Ping(Node):
     def __init__(self):
         super().__init__('Ping')
-        self.ping = self.create_subscription(
-                String,
-                'topic',
-                self.listener_callback,
-                10)
-        self.ping
+        self.ping = self.create_publisher(String, 'topic', 10)
+        timer_period = 1 # seconds
+        self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.i = 0
 
-    def listener_callback(self, msg):
-        self.get_logger().info("I heard: %s, so I say Ping" % msg.data)
-
+    def timer_callback(self):
+        msg = String()
+        msg.data = "Ping"
+        self.ping.publish(msg)
+        self.get_logger().info("Publishing '%s'" % msg.data)
+        self.i += 1
 
 def main(args=None):
     rclpy.init(args=args)

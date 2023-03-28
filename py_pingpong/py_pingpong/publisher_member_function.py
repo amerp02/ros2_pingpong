@@ -29,7 +29,7 @@ class MinimalPublisher(Node):
 
     def timer_callback(self):
         msg = String()
-        msg.data = 'Ping (call #%d)' % self.i
+        msg.data = "Ping"
         self.publisher_.publish(msg)
         self.get_logger().info('Publishing: "%s"' % msg.data)
         self.i += 1

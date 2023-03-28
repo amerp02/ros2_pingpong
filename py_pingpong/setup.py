@@ -20,10 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = py_pingpong.publisher_member_function:main',
+            'talker = py_pingpong.ping_function:main',
             'listener = py_pingpong.subscriber_member_function:main',
             'talker2 = py_pingpong.pong_function:main',
-            'listener2 = py_pingpong.ping_function:main',
         ],
     },
 )

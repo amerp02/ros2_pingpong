@@ -33,11 +33,10 @@ class MinimalSubscriber(Node):
 
     def listener_callback(self, msg):
         if msg.data == "Ping": 
-            self.get_logger().info('I heard: %s, so I say Pong!' % msg.data)
+            self.get_logger().info('I heard: "%s", so I say Pong!' % msg.data)
         elif msg.data == "Pong":
             self.get_logger().info('I heard: %s, so I say Ping!' % msg.data)
-        else:
-            print("Error: msg.data not 'Ping' or 'Pong', but %s." % msg.data)
+        print("Error: msg.data not 'Ping' or 'Pong', but %s." % msg.data)
 
 
 def main(args=None):

@@ -14,7 +14,7 @@ class Pong(Node):
 
     def timer_callback(self):
         msg = String()
-        msg.data = "Pong" 
+        msg.data = "Pong (call #%d)" % self.i
         self.pong.publish(msg)
         self.get_logger().info("Publishing: '%s'" % msg.data)
         self.i += 1
